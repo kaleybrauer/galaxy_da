@@ -38,6 +38,8 @@ Train on **simulated** galaxies (TNG50), adapt to **real** DESI galaxies with MM
 
 Overview of the model can be found in **`model/model_overview.ipynb`**
 
+To reproduce the paper figures, run:
+
 ```bash
 python scripts/make_plots.py --metrics outputs/all_methods_10epochs.csv --out outputs/figs --small
 
