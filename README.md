@@ -8,7 +8,9 @@ Train on **simulated** galaxies (TNG50), adapt to **real** DESI galaxies with MM
 
 ## Data access & layout
 
-**Anonymous OSF link:** https://osf.io/mxhe6/?view_only=52e8633869984ed8a54cea0610ab91f5
+**Data Access OSF link:** https://osf.io/mxhe6/?view_only=52e8633869984ed8a54cea0610ab91f5
+
+Download into **`data/source`** and **`data/target`**
 
 - `galaxy_images_rgb.zip` — **Source** (TNG50 mocks, RGB PNGs).  
 - `gz_desi.zip` — **Target** (DESI galaxies, RGB PNGs).  
