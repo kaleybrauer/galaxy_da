@@ -1,4 +1,4 @@
-Domain Adaptation In Galaxy Morphology
+Domain Adaptation In Galaxy Morphology and Star Formation Rates
 ======================================
 
 Domain Adaptation for Galaxy Morphology Classification using llustrisTNG and Galaxy Zoo Evolution dataset
