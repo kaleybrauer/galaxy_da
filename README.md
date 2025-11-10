@@ -1,48 +1,71 @@
-# Simulation→Observation Domain Adaptation for Galaxy Morphology
+Domain Adaptation In Galaxy Morphology
+======================================
 
+Domain Adaptation for Galaxy Morphology Classification using llustrisTNG and Galaxy Zoo Evolution dataset
 
-Train on **simulated** galaxies (TNG50), adapt to **real** DESI galaxies with MMD / Sinkhorn / DANN. 
+## Prerequisites
 
+- Python 3.10 or higher
+- [`uv`](https://docs.astral.sh/uv/getting-started/installation/) package manager
 
----
+## Installation
 
-## Data access & layout
-
-**Data Access OSF link:** https://osf.io/mxhe6/?view_only=52e8633869984ed8a54cea0610ab91f5
-
-Download into **`data/source`** and **`data/target`**
-
-- `galaxy_images_rgb.zip` — **Source** (TNG50 mocks, RGB PNGs).  
-- `gz_desi.zip` — **Target** (DESI galaxies, RGB PNGs).  
-
-**Labels (CSV files):**
-
-- **`data/source/galaxy_labels.csv`** — labels and metadata for **source** (TNG50) mock galaxies.
-- **`data/target/gz_desi_labels.csv`** — labels and metadata for **target** (DESI) real galaxies.
-
----
-
-## Methods
-
-- **Architecture:** compact CNN → GAP → MLP; 128-D penultimate feature.  
-  Source cross-entropy uses **class weighting** (ellipticals upweighted) to reflect target priors.
-- **Alignment (unsupervised target):**  
-  **MMD/energy** (`SamplesLoss("energy", p=2)`),  
-  **Sinkhorn OT** (`SamplesLoss("sinkhorn", p=2, blur, debias=True)` with **blur=0.75**),  
-  **DANN** (domain discriminator with **GRL**; GRL coeff **0.1**).  
-  Features are **L2-normalized** before alignment losses.
-- **Main hyperparams:** `--lambda 0.1` (MMD/Sinkhorn); `--adv 0.1` (DANN); **10 epochs**; batch size **32**.  
-  Diagnostics include Gaussian **MMD²**, **Sinkhorn divergence**, and **domain-probe AUC**.
-
----
-
-## Reproducing paper figures
-
-Overview of the model can be found in **`model/model_overview.ipynb`**
-
-To reproduce the paper figures, run:
+1. Clone this [`repo`](https://github.com/ahmedsalim3/iaifi-hackathon-2025.git)
 
 ```bash
-python scripts/make_plots.py --metrics outputs/all_methods_10epochs.csv --out outputs/figs --small
-
+git clone https://github.com/ahmedsalim3/iaifi-hackathon-2025.git
 ```
+
+2. Install dependencies:
+
+```bash
+make install
+```
+
+- or you can create a `.venv`:
+
+```sh
+python3 -m venv .venv
+source .venv/bin/activate # On mac/linux distros
+```
+- Install `nebula`
+
+```sh
+pip install -e .
+```
+
+## How to train?
+
+1. Create a config file, see [template](./configs/config.template.yml) and run with 
+
+```sh
+python3 scripts/run_train.py --config /path/to/config.yml
+```
+
+## How to evaluate?
+
+```sh
+python3 scripts/run_eval.py /path/to/ckpt
+```
+You can also run train and evaluate simultaneously. Run this with a single config, multiple configs, or a folder of configs by passing `-f`:
+
+```sh
+./run_experiment.sh <config_path> [more_configs...]
+# or for a folder of configs:
+./run_experiment.sh -f <config_folder>
+```
+## About This Project
+
+This project was made possible through the [2025 IAIFI Summer School](https://github.com/iaifi/summer-school-2025) provided by The [NSF AI](https://iaifi.org/) Institute for Artificial Intelligence and Fundamental Interactions (IAIFI).
+
+### Team Members
+
+- [@ahmedsalim3](https://ahmedsalim3.github.io/)
+- [@Meet-Vyas-Dev](https://meet-vyas-dev.github.io/)
+- [@kaleybrauer](https://www.kaleybrauer.com/)
+- [@adityadash54](https://github.com/adityadash54)
+- [@stivenbg](https://github.com/stivenbg)
+- [@dingq1](https://github.com/dingq1)
+- [@AumRTrivedi](https://github.com/AumRTrivedi)
+
+### References
