@@ -10,10 +10,10 @@ Domain Adaptation for Galaxy Morphology Classification using llustrisTNG and Gal
 
 ## Installation
 
-1. Clone this [`repo`](https://github.com/ahmedsalim3/iaifi-hackathon-2025.git)
+1. Clone this [`repo`](https://github.com/kaleybrauer/galaxy_da.git)
 
 ```bash
-git clone https://github.com/ahmedsalim3/iaifi-hackathon-2025.git
+git clone https://github.com/kaleybrauer/galaxy_da.git
 ```
 
 2. Install dependencies:
