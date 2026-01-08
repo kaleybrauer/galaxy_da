@@ -3,6 +3,9 @@ Domain Adaptation In Galaxy Morphology and Star Formation Rates
 
 Domain Adaptation for Galaxy Morphology Classification using llustrisTNG and Galaxy Zoo Evolution dataset
 
+This work was presented at NeurIPS 2025 Machine Learning and the Physical Sciences workshop.
+The paper can be found: https://arxiv.org/abs/2511.18590 
+
 ## Prerequisites
 
 - Python 3.10 or higher
